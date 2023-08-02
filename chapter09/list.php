@@ -1,6 +1,7 @@
 <?php
 require_once 'DbManager.php';
 
+session_start();
 try {
     $db = getDb();
     $sql = "SELECT isbn, title, price, publish, published
@@ -22,6 +23,13 @@ try {
 </head>
 <body>
     <h2>書籍一覧</h2>
+    <a href="insert_form.php" class="btn btn-primary">新規登録</a>
+    <?php
+        if (isset($_SESSION['message'])) {
+            print("<p style='color: blue'>{$_SESSION['message']}</p>");
+            unset($_SESSION['message']);
+        }
+    ?>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -43,6 +51,7 @@ try {
                 <td><?=$row['published'] ?></td>
                 <td>
                     <a href="update_form.php?isbn=<?=$row['isbn'] ?>" class="btn btn-secondary">編集</a>
+                    <a href="delete_form.php?isbn=<?=$row['isbn'] ?>" class="btn btn-danger">削除</a>
                 </td>
             </tr>
 <?php } ?>
