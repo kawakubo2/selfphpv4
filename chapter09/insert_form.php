@@ -2,15 +2,26 @@
 session_start();
 ?>
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <title>データの登録</title>
 </head>
 <body>
-    <h3>書籍データの登録</h3>
+    <h3>書籍のデータの登録</h3>
+    <a href="list.php" class="btn btn-success">書籍一覧</a>
     <?php
+        if (isset($_SESSION['insert_errors'])) {
+            print('<ul style="color:red">');
+            foreach ($_SESSION['insert_errors'] as $error) {
+                print("<li>{$error}</li>");
+            }
+            print('</ul>');
+            unset($_SESSION['insert_errors']);
+        }
         if (isset($_SESSION['message'])) {
             print("<p>{$_SESSION['message']}</p>");
             unset($_SESSION['message']);
@@ -19,23 +30,29 @@ session_start();
     <form action="insert_process.php" method="post">
         <div>
             <label for="isbn">ISBNコード</label><br>
-            <input type="text" name="isbn" id="isbn" size="25" maxlength="20" />
+            <input type="text" name="isbn" id="isbn" size="35" maxlength="150" 
+                value="<?=isset($_SESSION['isbn']) ? $_SESSION['isbn'] : '' ?>" />
         </div>
         <div>
             <label for="title">書名: </label><br>
-            <input type="text" name="title" id="title" size="35" maxlength="150" />
+            <input type="text" name="title" id="title" size="35" maxlength="150"
+                value="<?=isset($_SESSION['title']) ? $_SESSION['title'] : '' ?>" />
         </div>
         <div>
-            <label for="price">価格: </label><br>
-            <input type="text" name="price" id="price" size="6" maxlength="5" />
+            <label for="price">価格:</label><br>
+            <input type="text" name="price" id="price" size="6" maxlength="5"
+                value="<?=isset($_SESSION['price']) ? $_SESSION['price'] : '' ?>" />
         </div>
         <div>
             <label for="publish">出版社: </label><br>
-            <input type="text" name="publish" id="publish" size="25" maxlength="30" />
+            <input type="publish" name="publish" id="publish" size="25" maxlength="30"
+                value="<?=isset($_SESSION['publish']) ? $_SESSION['publish'] : '' ?>" />
         </div>
         <div>
-            <label for="published">刊行日: </label><br>
-            <input type="text" name="published" id="published" size="15" maxlength="10" />
+            <label for="poblished">刊行日:</label><br>
+            <input type="text" name="published" id="published" size="15" maxlenght="10"
+                value="<?=isset($_SESSION['published']) ? $_SESSION['published'] : '' ?>" />
+        </div>
         </div>
         <input type="submit" value="登録" />
     </form>
