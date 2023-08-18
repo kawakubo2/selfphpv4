@@ -50,7 +50,7 @@ try {
                 <td><?=$row['publish'] ?></td>
                 <td><?=$row['published'] ?></td>
                 <td>
-                    <a href="update_form.php?isbn=<?=$row['isbn'] ?>" class="btn btn-secondary">編集</a>
+                    <a href="update_form.php?isbn=<?=$row['isbn'] ?>&page=list.php" class="btn btn-secondary">編集</a>
                     <a href="delete_form.php?isbn=<?=$row['isbn'] ?>" class="btn btn-danger">削除</a>
                 </td>
             </tr>
