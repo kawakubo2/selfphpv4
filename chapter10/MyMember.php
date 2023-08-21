@@ -27,7 +27,7 @@ class MyMember {
     public function getName(): string {
         return $this->name;
     }
-    public function setName(string $name): void {
+    private function setName(string $name): void {
         if (trim($name) === "") {
             throw new Exception("名前は必須指定です。");
         }
@@ -51,7 +51,7 @@ class MyMember {
         }
         $this->height = $height;
     }
-    public function setBirthDate(DateTime $birthDate): void {
+    private function setBirthDate(DateTime $birthDate): void {
         $this->birthDate = $birthDate;
     }
     public function bmi(): float {
@@ -59,7 +59,6 @@ class MyMember {
     }
     public function age(): int {
         $today = new DateTime("now");
-        print($today->format("Y年m月d日") . "<br>");
         $diff = $today->diff($this->birthDate);
         return (int)$diff->format('%y');
     }

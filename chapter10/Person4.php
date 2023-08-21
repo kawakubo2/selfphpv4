@@ -4,6 +4,7 @@ class Person {
     public string $firstName;
     public string $lastName;
 
+    // コンストラクタもメソッド(特殊メソッド)
     public function __construct(string $firstName, string $lastName) {
         $this->firstName = $firstName;
         $this->lastName = $lastName;
