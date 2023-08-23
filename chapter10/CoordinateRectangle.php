@@ -6,7 +6,7 @@ class CoordinateRectangle extends Rectangle {
     public float $y;
 
     public function __construct(float $width, float $height, float $x, float $y) {
-        parent::__construct($widht, $height);
+        parent::__construct($width, $height);
         $this->x = $x;
         $this->y = $y;
     }
